@@ -12,7 +12,7 @@ public class Button : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D other)
-    { // If player is pressing the button, then open the door
+    { // If player is touching the button, then open the door
         if(other.gameObject.name=="Player")
         {
             StartCoroutine("OpenDoor");
