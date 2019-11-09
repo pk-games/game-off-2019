@@ -23,14 +23,9 @@ public class Player : MonoBehaviour
 
     void Movement()
     {
-        if (Input.GetAxis("Horizontal") > 0)
-        { //Make the character move right
-            transform.position += new Vector3(characterSpeed * Time.deltaTime, 0.0f, 0.0f);
-        }
-        else if (Input.GetAxis("Horizontal") < 0)
-        { // Make the character move left
-            transform.position -= new Vector3(characterSpeed * Time.deltaTime, 0.0f, 0.0f);
-        }
+        float moveX = Input.GetAxis("Horizontal");
+        rigidBody.velocity = new Vector2(moveX * characterSpeed, rigidBody.velocity.y);
+
         if (Input.GetButtonDown("Jump") && isGrounded)
         {// Allow the player to jump if he is grounded
             rigidBody.AddForce(Vector2.up * jumpHeight);
