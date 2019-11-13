@@ -223,6 +223,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button
       objectReference: {fileID: 0}
+    - target: {fileID: 583914609078463052, guid: 5c258eb7a83ea4cc7afb633811449b7a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 583914609078463049, guid: 5c258eb7a83ea4cc7afb633811449b7a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -350,7 +355,7 @@ PrefabInstance:
     - target: {fileID: 3376093241605111103, guid: eb1b9f5a8e4dd4f8bbe8291f6c513eef,
         type: 3}
       propertyPath: m_Tiles.Array.size
-      value: 23
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 3376093241605111103, guid: eb1b9f5a8e4dd4f8bbe8291f6c513eef,
         type: 3}
@@ -782,7 +787,7 @@ PrefabInstance:
     - target: {fileID: 3376093241605111103, guid: eb1b9f5a8e4dd4f8bbe8291f6c513eef,
         type: 3}
       propertyPath: m_Tiles.Array.data[20].first.x
-      value: -6
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 3376093241605111103, guid: eb1b9f5a8e4dd4f8bbe8291f6c513eef,
         type: 3}
@@ -829,6 +834,31 @@ PrefabInstance:
       propertyPath: m_Tiles.Array.data[22].second.m_ColliderType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3376093241605111103, guid: eb1b9f5a8e4dd4f8bbe8291f6c513eef,
+        type: 3}
+      propertyPath: m_Tiles.Array.data[11].first.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3376093241605111103, guid: eb1b9f5a8e4dd4f8bbe8291f6c513eef,
+        type: 3}
+      propertyPath: m_Tiles.Array.data[20].first.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3376093241605111103, guid: eb1b9f5a8e4dd4f8bbe8291f6c513eef,
+        type: 3}
+      propertyPath: m_Tiles.Array.data[21].first.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3376093241605111103, guid: eb1b9f5a8e4dd4f8bbe8291f6c513eef,
+        type: 3}
+      propertyPath: m_Tiles.Array.data[23].first.x
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3376093241605111103, guid: eb1b9f5a8e4dd4f8bbe8291f6c513eef,
+        type: 3}
+      propertyPath: m_Tiles.Array.data[23].first.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb1b9f5a8e4dd4f8bbe8291f6c513eef, type: 3}
 --- !u!1001 &3472804466275771345
@@ -842,6 +872,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 3472804466254966676, guid: 9a7761204a1944ccca7eacf8d1f4443a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3472804466254966678, guid: 9a7761204a1944ccca7eacf8d1f4443a,
         type: 3}
