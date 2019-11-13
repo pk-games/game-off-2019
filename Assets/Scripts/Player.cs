@@ -1,51 +1,62 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+
+[RequireComponent(typeof(Controller2D))]
 
 public class Player : MonoBehaviour
 {
-    private float characterSpeed = 5.0f;
-    private float jumpHeight = 250.0f;
-    private bool isGrounded = false;
-    Rigidbody2D rigidBody;
+    public float maxJumpHeight = 2.2f;
+    public float minJumpHeight = 1;
+    public float timeToJumpApex = 0.3f;
+    public float accelerationTimeAirborne = 0.2f;
+    public float accelerationTimeGrounded = 0.05f;
+    public float moveSpeed = 8;
 
-    // Start is called before the first frame update
+    private float maxJumpVelocity;
+    private float minJumpVelocity;
+    private float velocityXSmoothing;
+    private float gravity;
+
+    Vector3 velocity;
+    Controller2D controller;
+
     void Start()
     {
-        rigidBody = GetComponent<Rigidbody2D>();
+        controller = GetComponent<Controller2D>();
+
+        // Calculate gravity from max jump height & time to jump apex
+        gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
+
+        // Calculate max jump velocity from gravity & time to jump apex
+        maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
+
+        // Calculate minjump velocity from gravity & min jump height
+        minJumpVelocity = Mathf.Sqrt(2 * Mathf.Abs(gravity) * minJumpHeight);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        Movement();
-    }
-
-    void Movement()
-    {
-        float moveX = Input.GetAxis("Horizontal");
-        rigidBody.velocity = new Vector2(moveX * characterSpeed, rigidBody.velocity.y);
-
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {// Allow the player to jump if he is grounded
-            rigidBody.AddForce(Vector2.up * jumpHeight);
-        }
-    }
-
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.name == "Ground")
-        { // If Player is touching the ground, then set grounded to true
-            isGrounded = true;
-        }
-    }
-
-    void OnCollisionExit2D(Collision2D collision)
-    { // if Player is not touching is the ground, then set grounded to false
-        if (collision.gameObject.name == "Ground")
+        // Stop vertical velocity if we're touching the floor or roof
+        if (controller.collisions.above || controller.collisions.below)
         {
-            isGrounded = false;
+            velocity.y = 0;
         }
-    }
+        // Jump at max velocity if we're grounded
+        if (Input.GetButtonDown("Jump") && controller.collisions.below)
+        {
+            velocity.y = maxJumpVelocity;
+        }
+        // On jump release set velocity to min jump velocity if it's slower (quickly released)
+        if (Input.GetButtonUp("Jump") && velocity.y > minJumpVelocity)
+        {
+            velocity.y = minJumpVelocity;
+        }
 
+        float targetVelocityX = Input.GetAxisRaw("Horizontal") * moveSpeed;
+        float accelerationTime = controller.collisions.below ? accelerationTimeGrounded : accelerationTimeAirborne;
+
+        velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, accelerationTime);
+        velocity.y += gravity * Time.deltaTime;
+
+        controller.Move(velocity * Time.deltaTime);
+    }
 }
