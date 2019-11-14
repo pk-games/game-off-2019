@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 8514864928173803659}
   - component: {fileID: 8514864928173803658}
   m_Layer: 0
-  m_Name: Entrance
-  m_TagString: Untagged
+  m_Name: Spawn
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
