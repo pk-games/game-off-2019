@@ -4,7 +4,7 @@ public class Spike : MonoBehaviour
 {
     private Vector2 RespawnPoint;
 
-    private void Start()
+    private void Awake()
     {
         RespawnPoint = GameObject.FindGameObjectWithTag("Respawn").transform.position;
     }
