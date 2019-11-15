@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    public float maxJumpHeight = 2.2f;
-    public float minJumpHeight = 1;
-    public float timeToJumpApex = 0.3f;
+    public static float maxJumpHeight = 2.2f;
+    public static float minJumpHeight = 1;
+    public static float timeToJumpApex = 0.3f;
     public float accelerationTimeAirborne = 0.2f;
     public float accelerationTimeGrounded = 0.05f;
     public float moveSpeed = 8;
@@ -20,21 +20,19 @@ public class Player : MonoBehaviour
     private float minJumpVelocity;
     private float velocityXSmoothing;
     private float gravity;
-    private bool isDead = false;
+    private bool isDead;
 
     private Animator animator;
-
-    Vector3 velocity;
-    Controller2D controller;
-    SpriteRenderer spriteRenderer;
-
-
+    private Vector3 velocity;
+    private Controller2D controller;
+    private SpriteRenderer spriteRenderer;
 
     void Start()
     {
         animator = GetComponent<Animator>();
         controller = GetComponent<Controller2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
         // Calculate gravity from max jump height & time to jump apex
         gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
 
@@ -47,35 +45,46 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (isDead) return;
-        AnimationHandler();
-        //spriteRenderer.flipX = isFacingRight;
         // Stop vertical velocity if we're touching the floor or roof
         if (controller.collisions.above || controller.collisions.below)
         {
             velocity.y = 0;
         }
-        // Jump at max velocity if we're grounded
-        if (Input.GetButtonDown("Jump") && controller.collisions.below)
-        {
-            velocity.y = maxJumpVelocity;
-        }
-        // On jump release set velocity to min jump velocity if it's slower (quickly released)
-        if (Input.GetButtonUp("Jump") && velocity.y > minJumpVelocity)
-        {
-            velocity.y = minJumpVelocity;
-        }
-        if (Input.GetButtonDown("Fire1"))
-        {
-            HandleWarp();
-        }
-        if (Input.GetButtonDown("Fire2"))
-        {
-            HandleSetWarp();
-        }
 
-        float targetVelocityX = Input.GetAxisRaw("Horizontal") * moveSpeed;
-        float accelerationTime = controller.collisions.below ? accelerationTimeGrounded : accelerationTimeAirborne;
+        float targetVelocityX;
+        float accelerationTime;
+
+        if (!isDead)
+        {
+            AnimationHandler();
+
+            // Jump at max velocity if we're grounded
+            if (Input.GetButtonDown("Jump") && controller.collisions.below)
+            {
+                velocity.y = maxJumpVelocity;
+            }
+            // On jump release set velocity to min jump velocity if it's slower (quickly released)
+            if (Input.GetButtonUp("Jump") && velocity.y > minJumpVelocity)
+            {
+                velocity.y = minJumpVelocity;
+            }
+            if (Input.GetButtonDown("Fire1"))
+            {
+                HandleWarp();
+            }
+            if (Input.GetButtonDown("Fire2"))
+            {
+                HandleSetWarp();
+            }
+
+            targetVelocityX = Input.GetAxisRaw("Horizontal") * moveSpeed;
+            accelerationTime = controller.collisions.below ? accelerationTimeGrounded : accelerationTimeAirborne;
+        }
+        else
+        {
+            targetVelocityX = 0;
+            accelerationTime = 0;
+        }
 
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, accelerationTime);
         velocity.y += gravity * Time.deltaTime;
@@ -85,13 +94,7 @@ public class Player : MonoBehaviour
 
     void AnimationHandler ()
     {
-        if(Input.GetButton("isDead"))
-        {
-            animator.SetTrigger("isDead");
-            isDead = true;
-        }
         float directionX = Input.GetAxis("Horizontal");
-        print(directionX);
         if(directionX>0)
         {
             spriteRenderer.flipX = false;
@@ -121,14 +124,18 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        // Clone has two child colliders, deadly & chase
         if (collision.gameObject.tag == "Deadly")
         {
+            isDead = true;
+            animator.SetTrigger("isDead");
             StartCoroutine(ReloadLevel());
         }
     }
 
     IEnumerator ReloadLevel()
     {
+        yield return new WaitForSeconds(1.0f);
         Initiate.Fade("", UnityEngine.Color.black, 1.5f);
         yield return new WaitForSeconds(2.0f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
