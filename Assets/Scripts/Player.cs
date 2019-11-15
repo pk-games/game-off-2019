@@ -19,7 +19,8 @@ public class Player : MonoBehaviour
     private float maxJumpVelocity;
     private float minJumpVelocity;
     private float velocityXSmoothing;
-    private float gravity;
+    [HideInInspector]
+    public static float gravity;
     private bool isDead;
 
     private Animator animator;
@@ -56,7 +57,7 @@ public class Player : MonoBehaviour
 
         if (!isDead)
         {
-            AnimationHandler();
+            HandleAnimation();
 
             // Jump at max velocity if we're grounded
             if (Input.GetButtonDown("Jump") && controller.collisions.below)
@@ -92,24 +93,24 @@ public class Player : MonoBehaviour
     
     }
 
-    void AnimationHandler ()
+    void HandleAnimation ()
     {
         float directionX = Input.GetAxis("Horizontal");
-        if(directionX>0)
+        if (directionX > 0)
         {
             spriteRenderer.flipX = false;
         }
-        if(directionX<0)
+        if (directionX < 0)
         {
             spriteRenderer.flipX = true;
         }
         if (Input.GetButtonDown("Jump"))
         {
-            animator.SetBool("Jump", true);
+            animator.SetBool("Jumping", true);
         }
         else if (controller.collisions.below)
         {
-            animator.SetBool("Jump", false);
+            animator.SetBool("Jumping", false);
         }
         if (Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Horizontal") < 0)
         {
@@ -124,20 +125,26 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Clone has two child colliders, deadly & chase
         if (collision.gameObject.tag == "Deadly")
         {
             isDead = true;
-            animator.SetTrigger("isDead");
-            StartCoroutine(ReloadLevel());
+            animator.SetTrigger("Dead");
+            StartCoroutine(RestartScene());
         }
     }
 
-    IEnumerator ReloadLevel()
+    IEnumerator RestartScene()
     {
-        yield return new WaitForSeconds(1.0f);
-        Initiate.Fade("", UnityEngine.Color.black, 1.5f);
-        yield return new WaitForSeconds(2.0f);
+        // Wait a second
+        yield return new WaitForSeconds(1);
+
+        // Fade to black
+        Initiate.Fade("", Color.black, 1);
+
+        // Wait a second
+        yield return new WaitForSeconds(1);
+
+        // Restart current scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

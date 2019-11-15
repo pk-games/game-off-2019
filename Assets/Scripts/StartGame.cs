@@ -1,26 +1,30 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
 
 public class StartGame : MonoBehaviour
 {
     public AudioClip OnClickSound;
-    private int firstLevel = 1;
-    public Color loadToColor = Color.black;
 
+    private int firstSceneIndex = 1;
 
     public void OnClick()
     {
-        StartCoroutine("LoadLevel");
+        StartCoroutine(LoadLevel());
     }
 
     IEnumerator LoadLevel()
     {
-        Initiate.Fade("", loadToColor, 1.5f);
+        // Fade to black
+        Initiate.Fade("", Color.black, 1);
+
+        // Play click sound
         GetComponent<AudioSource>().PlayOneShot(OnClickSound);
-        yield return new WaitForSeconds(2.0f);
-        SceneManager.LoadScene(firstLevel);
+
+        // Wait a second
+        yield return new WaitForSeconds(1);
+
+        // Load the first scene
+        SceneManager.LoadScene(firstSceneIndex);
     }
 }

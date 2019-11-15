@@ -1,30 +1,28 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelCompleted : MonoBehaviour
 {
-	private int CurrentScene;
-	private Color loadToColor = Color.black;
+	private int currentSceneIndex;
+
 	void Start()
     {
-		CurrentScene = SceneManager.GetActiveScene().buildIndex;
+		currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
     }
 
-	void OnCollisionEnter2D(Collision2D col)
+	void OnCollisionEnter2D(Collision2D collision)
 	{
-		print(col.gameObject.name);
-		if (col.gameObject.name == "Player")
+		if (collision.gameObject.tag == "Player")
 		{
-			StartCoroutine("LoadNextLevel");
+			StartCoroutine(LoadNextScene());
 		}
 	}
 
-	IEnumerator LoadNextLevel()
-	{// fade out and go to the next level
-		Initiate.Fade("", loadToColor, 1.5f);
+	IEnumerator LoadNextScene()
+	{
+		Initiate.Fade("", Color.black, 1.5f);
 		yield return new WaitForSeconds(2.0f);
-		SceneManager.LoadScene(++CurrentScene);
+		SceneManager.LoadScene(++currentSceneIndex);
 	}
 }

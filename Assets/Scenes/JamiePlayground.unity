@@ -2761,22 +2761,6 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1453326169, guid: 67727719f2c7146e1b26582633b339a6, type: 3}
-      propertyPath: m_Offset.x
-      value: -0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453326169, guid: 67727719f2c7146e1b26582633b339a6, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453326169, guid: 67727719f2c7146e1b26582633b339a6, type: 3}
-      propertyPath: m_Size.x
-      value: 1.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453326169, guid: 67727719f2c7146e1b26582633b339a6, type: 3}
-      propertyPath: m_Size.y
-      value: 1.75
-      objectReference: {fileID: 0}
     - target: {fileID: 1453326167, guid: 67727719f2c7146e1b26582633b339a6, type: 3}
       propertyPath: warpPointPrefab
       value: 

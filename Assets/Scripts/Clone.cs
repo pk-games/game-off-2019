@@ -7,23 +7,11 @@ public class Clone : MonoBehaviour
     Controller2D controller;
     Vector3 velocity;
 
-    private float maxJumpHeight = Player.maxJumpHeight;
-    private float timeToJumpApex = Player.timeToJumpApex;
-    private float gravity;
+    private readonly float gravity = Player.gravity;
 
-    void Start()
+    void Awake()
     {
-        //animator = GetComponent<Animator>();
         controller = GetComponent<Controller2D>();
-        //spriteRenderer = GetComponent<SpriteRenderer>();
-        // Calculate gravity from max jump height & time to jump apex
-        gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
-
-        // Calculate max jump velocity from gravity & time to jump apex
-        //maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
-
-        // Calculate minjump velocity from gravity & min jump height
-        //minJumpVelocity = Mathf.Sqrt(2 * Mathf.Abs(gravity) * minJumpHeight);
     }
 
     void Update()
