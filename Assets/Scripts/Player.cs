@@ -16,8 +16,16 @@ public class Player : MonoBehaviour
     private float velocityXSmoothing;
     private float gravity;
 
+    private Vector2 respawnPoint;
+
     Vector3 velocity;
     Controller2D controller;
+
+    private void Awake()
+    {
+        // Set spawn point
+        respawnPoint = GameObject.FindGameObjectWithTag("Respawn").transform.position;
+    }
 
     void Start()
     {
@@ -58,5 +66,22 @@ public class Player : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    public void Respawn()
+    {
+        // Move to respawn point
+        transform.position = respawnPoint;
+
+        // Reset velocity
+        velocity = Vector3.zero;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Deadly")
+        {
+            Respawn();
+        }
     }
 }
