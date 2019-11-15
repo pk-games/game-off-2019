@@ -20,22 +20,21 @@ public class Player : MonoBehaviour
     private float minJumpVelocity;
     private float velocityXSmoothing;
     private float gravity;
+    private bool isDead = false;
 
-    private Vector2 respawnPoint;
+    private Animator animator;
 
     Vector3 velocity;
     Controller2D controller;
+    SpriteRenderer spriteRenderer;
 
-    private void Awake()
-    {
-        // Set spawn point
-        respawnPoint = GameObject.FindGameObjectWithTag("Respawn").transform.position;
-    }
+
 
     void Start()
     {
+        animator = GetComponent<Animator>();
         controller = GetComponent<Controller2D>();
-
+        spriteRenderer = GetComponent<SpriteRenderer>();
         // Calculate gravity from max jump height & time to jump apex
         gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
 
@@ -48,6 +47,9 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (isDead) return;
+        AnimationHandler();
+        //spriteRenderer.flipX = isFacingRight;
         // Stop vertical velocity if we're touching the floor or roof
         if (controller.collisions.above || controller.collisions.below)
         {
@@ -77,9 +79,45 @@ public class Player : MonoBehaviour
 
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, accelerationTime);
         velocity.y += gravity * Time.deltaTime;
-
         controller.Move(velocity * Time.deltaTime);
+    
     }
+
+    void AnimationHandler ()
+    {
+        if(Input.GetButton("isDead"))
+        {
+            animator.SetTrigger("isDead");
+            isDead = true;
+        }
+        float directionX = Input.GetAxis("Horizontal");
+        print(directionX);
+        if(directionX>0)
+        {
+            spriteRenderer.flipX = false;
+        }
+        if(directionX<0)
+        {
+            spriteRenderer.flipX = true;
+        }
+        if (Input.GetButtonDown("Jump"))
+        {
+            animator.SetBool("Jump", true);
+        }
+        else if (controller.collisions.below)
+        {
+            animator.SetBool("Jump", false);
+        }
+        if (Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Horizontal") < 0)
+        {
+            animator.SetBool("Running", true);
+        }
+        else
+        {
+            animator.SetBool("Running", false);
+        }
+    }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
