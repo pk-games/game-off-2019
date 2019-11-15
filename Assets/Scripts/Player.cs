@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Controller2D))]
 
@@ -10,6 +12,9 @@ public class Player : MonoBehaviour
     public float accelerationTimeAirborne = 0.2f;
     public float accelerationTimeGrounded = 0.05f;
     public float moveSpeed = 8;
+
+    public GameObject warpPointPrefab;
+    public GameObject clonePrefab;
 
     private float maxJumpVelocity;
     private float minJumpVelocity;
@@ -58,6 +63,14 @@ public class Player : MonoBehaviour
         {
             velocity.y = minJumpVelocity;
         }
+        if (Input.GetButtonDown("Fire1"))
+        {
+            HandleWarp();
+        }
+        if (Input.GetButtonDown("Fire2"))
+        {
+            HandleSetWarp();
+        }
 
         float targetVelocityX = Input.GetAxisRaw("Horizontal") * moveSpeed;
         float accelerationTime = controller.collisions.below ? accelerationTimeGrounded : accelerationTimeAirborne;
@@ -68,20 +81,52 @@ public class Player : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
     }
 
-    public void Respawn()
-    {
-        // Move to respawn point
-        transform.position = respawnPoint;
-
-        // Reset velocity
-        velocity = Vector3.zero;
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Deadly")
         {
-            Respawn();
+            StartCoroutine(ReloadLevel());
+        }
+    }
+
+    IEnumerator ReloadLevel()
+    {
+        Initiate.Fade("", UnityEngine.Color.black, 1.5f);
+        yield return new WaitForSeconds(2.0f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    private void HandleWarp()
+    {
+        GameObject warpPoint = GameObject.FindGameObjectWithTag("WarpPoint");
+        if (warpPoint)
+        {
+            // Create a clone
+            Instantiate(clonePrefab, transform.position, Quaternion.identity);
+
+            // If warp point exists move player to it
+            transform.position = warpPoint.transform.position;
+
+            // Reset velocity
+            velocity = Vector3.zero;
+
+            // Destroy warp point
+            Destroy(warpPoint);
+        }
+    }
+
+    private void HandleSetWarp()
+    {
+        GameObject warpPoint = GameObject.FindGameObjectWithTag("WarpPoint");
+        if (warpPoint)
+        {
+            // If warp point already exists move it to current position
+            warpPoint.transform.position = transform.position;
+        }
+        else
+        {
+            // Otherwise create a new warp point at current location
+            Instantiate(warpPointPrefab, transform.position, Quaternion.identity);
         }
     }
 }

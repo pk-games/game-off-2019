@@ -2825,5 +2825,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1453326167, guid: 67727719f2c7146e1b26582633b339a6, type: 3}
+      propertyPath: warpPointPrefab
+      value: 
+      objectReference: {fileID: 1078190012246760200, guid: 76383761935f749e2a356ae349c4e0a5,
+        type: 3}
+    - target: {fileID: 1453326167, guid: 67727719f2c7146e1b26582633b339a6, type: 3}
+      propertyPath: clonePrefab
+      value: 
+      objectReference: {fileID: 6260187992419524963, guid: c30b8026a51bc48c2aa6ead93dafdce5,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67727719f2c7146e1b26582633b339a6, type: 3}
