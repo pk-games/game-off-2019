@@ -95,7 +95,7 @@ public class Player : MonoBehaviour
 
     void HandleAnimation ()
     {
-        float directionX = Input.GetAxis("Horizontal");
+        float directionX = Input.GetAxisRaw("Horizontal");
         if (directionX > 0)
         {
             spriteRenderer.flipX = false;
@@ -112,7 +112,7 @@ public class Player : MonoBehaviour
         {
             animator.SetBool("Jumping", false);
         }
-        if (Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Horizontal") < 0)
+        if (Input.GetAxisRaw("Horizontal") > 0 || Input.GetAxisRaw("Horizontal") < 0)
         {
             animator.SetBool("Running", true);
         }
