@@ -7,8 +7,7 @@ TagManager:
   - Ground
   - Button
   - Deadly
-  - WarpPoint
-  - Clone
+  - Snapshot
   layers:
   - Default
   - TransparentFX

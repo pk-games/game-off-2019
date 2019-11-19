@@ -6,14 +6,12 @@ public class StartGame : MonoBehaviour
 {
     public AudioClip OnClickSound;
 
-    private int firstSceneIndex = 1;
-
     public void OnClick()
     {
-        StartCoroutine(LoadLevel());
+        StartCoroutine(LoadFirstScene());
     }
 
-    IEnumerator LoadLevel()
+    IEnumerator LoadFirstScene()
     {
         // Fade to black
         Initiate.Fade("", Color.black, 1);
@@ -25,6 +23,6 @@ public class StartGame : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         // Load the first scene
-        SceneManager.LoadScene(firstSceneIndex);
+        SceneManager.LoadScene(1);
     }
 }

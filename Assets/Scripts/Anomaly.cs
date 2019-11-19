@@ -2,7 +2,7 @@
 
 [RequireComponent(typeof(Controller2D))]
 
-public class Clone : MonoBehaviour
+public class Anomaly : MonoBehaviour
 {
     Controller2D controller;
     Vector3 velocity;

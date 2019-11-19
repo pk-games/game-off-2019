@@ -13,8 +13,8 @@ public class Player : MonoBehaviour
     public float accelerationTimeGrounded = 0.05f;
     public float moveSpeed = 8;
 
-    public GameObject warpPointPrefab;
-    public GameObject clonePrefab;
+    public GameObject snapshotPrefab;
+    public GameObject anomalyPrefab;
 
     private float maxJumpVelocity;
     private float minJumpVelocity;
@@ -150,35 +150,35 @@ public class Player : MonoBehaviour
 
     private void HandleWarp()
     {
-        GameObject warpPoint = GameObject.FindGameObjectWithTag("WarpPoint");
-        if (warpPoint)
+        GameObject snapshot = GameObject.FindGameObjectWithTag("Snapshot");
+        if (snapshot)
         {
-            // Create a clone
-            Instantiate(clonePrefab, transform.position, Quaternion.identity);
+            // Create an anomaly
+            Instantiate(anomalyPrefab, transform.position, Quaternion.identity);
 
             // If warp point exists move player to it
-            transform.position = warpPoint.transform.position;
+            transform.position = snapshot.transform.position;
 
             // Reset velocity
             velocity = Vector3.zero;
 
             // Destroy warp point
-            Destroy(warpPoint);
+            Destroy(snapshot);
         }
     }
 
     private void HandleSetWarp()
     {
-        GameObject warpPoint = GameObject.FindGameObjectWithTag("WarpPoint");
-        if (warpPoint)
+        GameObject snapshot = GameObject.FindGameObjectWithTag("Snapshot");
+        if (snapshot)
         {
             // If warp point already exists move it to current position
-            warpPoint.transform.position = transform.position;
+            snapshot.transform.position = transform.position;
         }
         else
         {
             // Otherwise create a new warp point at current location
-            Instantiate(warpPointPrefab, transform.position, Quaternion.identity);
+            Instantiate(snapshotPrefab, transform.position, Quaternion.identity);
         }
     }
 }

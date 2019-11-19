@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelCompleted : MonoBehaviour
+public class Exit : MonoBehaviour
 {
 	private int currentSceneIndex;
 
@@ -21,8 +21,8 @@ public class LevelCompleted : MonoBehaviour
 
 	IEnumerator LoadNextScene()
 	{
-		Initiate.Fade("", Color.black, 1.5f);
-		yield return new WaitForSeconds(2.0f);
+		Initiate.Fade("", Color.black, 1);
+		yield return new WaitForSeconds(1);
 		SceneManager.LoadScene(++currentSceneIndex);
 	}
 }

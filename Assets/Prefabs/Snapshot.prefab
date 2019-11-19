@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1078190012246760202}
   - component: {fileID: 863402344955348233}
   m_Layer: 0
-  m_Name: WarpPoint
-  m_TagString: WarpPoint
+  m_Name: Snapshot
+  m_TagString: Snapshot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
