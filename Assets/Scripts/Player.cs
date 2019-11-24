@@ -178,7 +178,10 @@ public class Player : MonoBehaviour
         else
         {
             // Otherwise create a new warp point at current location
-            Instantiate(snapshotPrefab, transform.position, Quaternion.identity);
+            GameObject newSnapshot = Instantiate(snapshotPrefab, transform.position, Quaternion.identity);
+
+            // Make snapshot face the same way as the player
+            newSnapshot.GetComponent<SpriteRenderer>().flipX = this.GetComponent<SpriteRenderer>().flipX;
         }
     }
 }
