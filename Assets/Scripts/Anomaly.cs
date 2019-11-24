@@ -5,9 +5,12 @@
 public class Anomaly : MonoBehaviour
 {
     Controller2D controller;
-    Vector3 velocity;
+    public Vector3 velocity;
 
+    private float velocityXSmoothing;
     private readonly float gravity = Player.gravity;
+    private readonly float accelerationTimeGrounded = Player.accelerationTimeGrounded;
+    private readonly float accelerationTimeAirborne = Player.accelerationTimeAirborne;
 
     void Awake()
     {
@@ -21,6 +24,8 @@ public class Anomaly : MonoBehaviour
         {
             velocity.y = 0;
         }
+        float accelerationTime = controller.collisions.below ? accelerationTimeGrounded : accelerationTimeAirborne;
+        velocity.x = Mathf.SmoothDamp(velocity.x, 0, ref velocityXSmoothing, accelerationTime);
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
@@ -30,6 +35,10 @@ public class Anomaly : MonoBehaviour
         if (collision.gameObject.tag == "Deadly")
         {
             Destroy(this.gameObject);
+        }
+        if (collision.gameObject.tag == "Snapshot")
+        {
+            Destroy(collision.gameObject);
         }
     }
 }

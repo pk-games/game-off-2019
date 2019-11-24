@@ -393,6 +393,21 @@ PrefabInstance:
       propertyPath: m_PixelSnapping
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9017107301115390062, guid: d3ecf2aa40a974b10b7cb51fa5c2d67b,
+        type: 3}
+      propertyPath: m_RefResolutionX
+      value: 496
+      objectReference: {fileID: 0}
+    - target: {fileID: 9017107301115390062, guid: d3ecf2aa40a974b10b7cb51fa5c2d67b,
+        type: 3}
+      propertyPath: m_RefResolutionY
+      value: 279
+      objectReference: {fileID: 0}
+    - target: {fileID: 9017107301115390062, guid: d3ecf2aa40a974b10b7cb51fa5c2d67b,
+        type: 3}
+      propertyPath: m_UpscaleRT
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3ecf2aa40a974b10b7cb51fa5c2d67b, type: 3}
 --- !u!1 &1103491471
