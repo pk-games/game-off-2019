@@ -31,5 +31,9 @@ public class Anomaly : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        if (collision.gameObject.tag == "Snapshot")
+        {
+            Destroy(collision.gameObject);
+        }
     }
 }
