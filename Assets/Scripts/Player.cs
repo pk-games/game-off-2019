@@ -183,6 +183,9 @@ public class Player : MonoBehaviour
         {
             // If warp point already exists move it to current position
             snapshot.transform.position = transform.position;
+
+            // Make snapshot face the same way as the player
+            snapshot.GetComponent<SpriteRenderer>().flipX = this.GetComponent<SpriteRenderer>().flipX;
         }
         else
         {
