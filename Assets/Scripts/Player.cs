@@ -93,32 +93,38 @@ public class Player : MonoBehaviour
     
     }
 
-    void HandleAnimation ()
+    void HandleAnimation()
     {
         float directionX = Input.GetAxisRaw("Horizontal");
         if (directionX > 0)
         {
             spriteRenderer.flipX = false;
+            animator.SetBool("Running", true);
         }
-        if (directionX < 0)
+        else if (directionX < 0)
         {
             spriteRenderer.flipX = true;
-        }
-        if (Input.GetButtonDown("Jump"))
-        {
-            animator.SetBool("Jumping", true);
-        }
-        else if (controller.collisions.below)
-        {
-            animator.SetBool("Jumping", false);
-        }
-        if (Input.GetAxisRaw("Horizontal") > 0 || Input.GetAxisRaw("Horizontal") < 0)
-        {
             animator.SetBool("Running", true);
         }
         else
         {
             animator.SetBool("Running", false);
+        }
+        if (Input.GetButtonDown("Jump"))
+        {
+            animator.SetBool("Jumping", true);
+        }
+        else
+        {
+            animator.SetBool("Jumping", false);
+        }
+        if (!controller.collisions.below)
+        {
+            animator.SetBool("Falling", true);
+        }
+        else
+        {
+            animator.SetBool("Falling", false);
         }
     }
 
