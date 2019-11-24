@@ -1,10 +1,15 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class Lever : MonoBehaviour
 {
-    public GameObject trigger;
+    public GameObject[] triggers;
+    public bool isTimed;
+    public float timerSeconds;
+
     private SpriteRenderer spriteRenderer;
     private bool isInRange;
+    private bool isUsable = true;
     private bool isActive;
 
     private void Awake()
@@ -12,15 +17,36 @@ public class Lever : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    void Update()
+    private void Update()
     {
-        if (Input.GetButtonDown("Interact") && isInRange)
+        if (Input.GetButtonDown("Interact") && isInRange && isUsable)
         {
-            isActive = !isActive;
-            spriteRenderer.flipX = isActive;
+            ToggleTriggers();
 
-            // TODO: Call method on trigger class
+            if (isTimed)
+            {
+                isUsable = false;
+                StartCoroutine(OnTimerEnd());
+            }
         }
+    }
+
+    private void ToggleTriggers()
+    {
+        isActive = !isActive;
+        spriteRenderer.flipX = isActive;
+
+        for (int i = 0; i < triggers.Length; i++)
+        {
+            triggers[i].SetActive(!triggers[i].activeSelf);
+        }
+    }
+
+    IEnumerator OnTimerEnd()
+    {
+        yield return new WaitForSeconds(timerSeconds);
+        isUsable = true;
+        ToggleTriggers();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
