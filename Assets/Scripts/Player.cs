@@ -9,19 +9,18 @@ public class Player : MonoBehaviour
     public static float maxJumpHeight = 2.2f;
     public static float minJumpHeight = 1;
     public static float timeToJumpApex = 0.3f;
-    public float accelerationTimeAirborne = 0.2f;
-    public float accelerationTimeGrounded = 0.05f;
-    public float moveSpeed = 8;
-
-    public GameObject snapshotPrefab;
-    public GameObject anomalyPrefab;
+    public static float accelerationTimeAirborne = 0.2f;
+    public static float accelerationTimeGrounded = 0.05f;
+    public static float moveSpeed = 8;
+    public static float gravity;
 
     private float maxJumpVelocity;
     private float minJumpVelocity;
     private float velocityXSmoothing;
-    [HideInInspector]
-    public static float gravity;
     private bool isDead;
+
+    public GameObject snapshotPrefab;
+    public GameObject anomalyPrefab;
 
     private Animator animator;
     private Vector3 velocity;
@@ -75,7 +74,7 @@ public class Player : MonoBehaviour
             }
             if (Input.GetButtonDown("Fire2"))
             {
-                HandleSetWarp();
+                HandleSetSnapshot();
             }
 
             targetVelocityX = Input.GetAxisRaw("Horizontal") * moveSpeed;
@@ -165,23 +164,26 @@ public class Player : MonoBehaviour
             // Make anomalyface the same way as the player
             anomaly.GetComponent<SpriteRenderer>().flipX = this.GetComponent<SpriteRenderer>().flipX;
 
-            // If warp point exists move player to it
+            // Transfer player velocity to anomaly
+            anomaly.GetComponent<Anomaly>().velocity = velocity;
+
+            // If snapshot exists move player to it
             transform.position = snapshot.transform.position;
 
             // Reset velocity
             velocity = Vector3.zero;
 
-            // Destroy warp point
+            // Destroy the snapshot
             Destroy(snapshot);
         }
     }
 
-    private void HandleSetWarp()
+    private void HandleSetSnapshot()
     {
         GameObject snapshot = GameObject.FindGameObjectWithTag("Snapshot");
         if (snapshot)
         {
-            // If warp point already exists move it to current position
+            // If snapshot already exists move it to current position
             snapshot.transform.position = transform.position;
 
             // Make snapshot face the same way as the player
@@ -189,7 +191,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            // Otherwise create a new warp point at current location
+            // Otherwise create a new snapshot at current location
             GameObject newSnapshot = Instantiate(snapshotPrefab, transform.position, Quaternion.identity);
 
             // Make snapshot face the same way as the player
