@@ -154,7 +154,10 @@ public class Player : MonoBehaviour
         if (snapshot)
         {
             // Create an anomaly
-            Instantiate(anomalyPrefab, transform.position, Quaternion.identity);
+            GameObject anomaly = Instantiate(anomalyPrefab, transform.position, Quaternion.identity);
+
+            // Make anomalyface the same way as the player
+            anomaly.GetComponent<SpriteRenderer>().flipX = this.GetComponent<SpriteRenderer>().flipX;
 
             // If warp point exists move player to it
             transform.position = snapshot.transform.position;
