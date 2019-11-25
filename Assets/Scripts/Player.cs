@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public static float accelerationTimeGrounded = 0.05f;
     public static float moveSpeed = 8;
     public static float gravity;
+    public bool canWarp;
 
     private float maxJumpVelocity;
     private float minJumpVelocity;
@@ -155,6 +156,10 @@ public class Player : MonoBehaviour
 
     private void HandleWarp()
     {
+        if (!canWarp)
+        {
+            return;
+        }
         GameObject snapshot = GameObject.FindGameObjectWithTag("Snapshot");
         if (snapshot)
         {
@@ -180,6 +185,10 @@ public class Player : MonoBehaviour
 
     private void HandleSetSnapshot()
     {
+        if (!canWarp)
+        {
+            return;
+        }
         GameObject snapshot = GameObject.FindGameObjectWithTag("Snapshot");
         if (snapshot)
         {
