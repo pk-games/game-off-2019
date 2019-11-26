@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
     public static float gravity;
     public bool canWarp;
 
+    public AudioClip warpSound;
+
     private float maxJumpVelocity;
     private float minJumpVelocity;
     private float velocityXSmoothing;
@@ -28,12 +30,14 @@ public class Player : MonoBehaviour
     private Vector3 velocity;
     private Controller2D controller;
     private SpriteRenderer spriteRenderer;
+    private AudioSource audioSource;
 
     void Start()
     {
         animator = GetComponent<Animator>();
         controller = GetComponent<Controller2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
 
         // Calculate gravity from max jump height & time to jump apex
         gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
@@ -79,6 +83,10 @@ public class Player : MonoBehaviour
             }
             if (Input.GetButtonDown("Fire1"))
             {
+                // Play the warp sound effect
+                audioSource.PlayOneShot(warpSound);
+
+                // Handle the warp
                 StartCoroutine(HandleWarp());
             }
             if (Input.GetButtonDown("Fire2"))
@@ -188,7 +196,7 @@ public class Player : MonoBehaviour
         if (snapshot)
         {
             isWarping = true;
-            yield return new WaitForSeconds(1.1f);
+            yield return new WaitForSeconds(0.55f);
             isWarping = false;
 
             // Create an anomaly
