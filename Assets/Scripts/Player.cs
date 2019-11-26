@@ -13,9 +13,7 @@ public class Player : MonoBehaviour
     public static float accelerationTimeGrounded = 0.05f;
     public static float moveSpeed = 8;
     public static float gravity;
-    public bool canWarp;
-
-    public AudioClip warpSound;
+    public static bool canWarp;
 
     private float maxJumpVelocity;
     private float minJumpVelocity;
@@ -25,6 +23,7 @@ public class Player : MonoBehaviour
 
     public GameObject snapshotPrefab;
     public GameObject anomalyPrefab;
+    public AudioClip warpSound;
 
     private Animator animator;
     private Vector3 velocity;
