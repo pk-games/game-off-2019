@@ -52,7 +52,11 @@ public class Player : MonoBehaviour
     void Update()
     {
         HandleAnimation();
+        HandleMovement();
+    }
 
+    void HandleMovement()
+    {
         // Stop vertical velocity if we're touching the floor or roof
         if (controller.collisions.above || controller.collisions.below)
         {
@@ -90,7 +94,7 @@ public class Player : MonoBehaviour
                 // Handle the warp
                 StartCoroutine(HandleWarp());
             }
-            if (Input.GetButtonDown("Fire2"))
+            if (Input.GetButtonDown("Fire2") && canWarp)
             {
                 HandleSetSnapshot();
             }
@@ -111,7 +115,6 @@ public class Player : MonoBehaviour
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, accelerationTime);
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
-    
     }
 
     void HandleAnimation()
@@ -218,10 +221,6 @@ public class Player : MonoBehaviour
 
     private void HandleSetSnapshot()
     {
-        if (!canWarp)
-        {
-            return;
-        }
         GameObject snapshot = GameObject.FindGameObjectWithTag("Snapshot");
         if (snapshot)
         {
