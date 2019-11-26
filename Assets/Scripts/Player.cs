@@ -85,6 +85,10 @@ public class Player : MonoBehaviour
             {
                 HandleSetSnapshot();
             }
+            if (Input.GetButtonDown("Restart"))
+            {
+                StartCoroutine(RestartScene(0));
+            }
 
             targetVelocityX = Input.GetAxisRaw("Horizontal") * moveSpeed;
             accelerationTime = controller.collisions.below ? accelerationTimeGrounded : accelerationTimeAirborne;
@@ -155,14 +159,14 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Deadly")
         {
             isDead = true;
-            //StartCoroutine(RestartScene());
+            StartCoroutine(RestartScene(1));
         }
     }
 
-    IEnumerator RestartScene()
+    IEnumerator RestartScene(float delay)
     {
         // Wait a second
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(delay);
 
         // Fade to black
         Initiate.Fade("", Color.black, 1);
