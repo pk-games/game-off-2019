@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     public static float accelerationTimeGrounded = 0.05f;
     public static float moveSpeed = 8;
     public static float gravity;
-    public static bool canWarp;
+    public bool canWarp;
 
     private float maxJumpVelocity;
     private float minJumpVelocity;
