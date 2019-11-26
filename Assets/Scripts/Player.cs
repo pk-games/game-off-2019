@@ -81,7 +81,8 @@ public class Player : MonoBehaviour
             {
                 velocity.y = minJumpVelocity;
             }
-            if (Input.GetButtonDown("Fire1"))
+            GameObject snapshot = GameObject.FindGameObjectWithTag("Snapshot");
+            if (Input.GetButtonDown("Fire1") && canWarp && snapshot)
             {
                 // Play the warp sound effect
                 audioSource.PlayOneShot(warpSound);
@@ -188,10 +189,6 @@ public class Player : MonoBehaviour
 
     IEnumerator HandleWarp()
     {
-        if (!canWarp)
-        {
-            yield return null;
-        }
         GameObject snapshot = GameObject.FindGameObjectWithTag("Snapshot");
         if (snapshot)
         {
