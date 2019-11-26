@@ -12,8 +12,7 @@ public class Artifact : MonoBehaviour
         {
             ToggleTriggers();
             Destroy(this.gameObject);
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            player.GetComponent<Player>().canWarp = true;
+            Player.canWarp = true;
         }
     }
 
