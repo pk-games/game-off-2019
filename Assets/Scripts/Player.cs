@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     private float minJumpVelocity;
     private float velocityXSmoothing;
     private bool isDead;
+    private bool isWarping;
 
     public GameObject snapshotPrefab;
     public GameObject anomalyPrefab;
@@ -46,6 +47,8 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        HandleAnimation();
+
         // Stop vertical velocity if we're touching the floor or roof
         if (controller.collisions.above || controller.collisions.below)
         {
@@ -57,7 +60,12 @@ public class Player : MonoBehaviour
 
         if (!isDead)
         {
-            HandleAnimation();
+            if (isWarping)
+            {
+                velocity.x = 0;
+                velocity.y = 0;
+                return;
+            }
 
             // Jump at max velocity if we're grounded
             if (Input.GetButtonDown("Jump") && controller.collisions.below)
@@ -71,7 +79,7 @@ public class Player : MonoBehaviour
             }
             if (Input.GetButtonDown("Fire1"))
             {
-                HandleWarp();
+                StartCoroutine(HandleWarp());
             }
             if (Input.GetButtonDown("Fire2"))
             {
@@ -95,6 +103,10 @@ public class Player : MonoBehaviour
 
     void HandleAnimation()
     {
+        if (isDead)
+        {
+            animator.SetBool("Dead", true);
+        }
         float directionX = Input.GetAxisRaw("Horizontal");
         if (directionX > 0)
         {
@@ -126,6 +138,15 @@ public class Player : MonoBehaviour
         {
             animator.SetBool("Falling", false);
         }
+        GameObject snapshot = GameObject.FindGameObjectWithTag("Snapshot");
+        if (Input.GetButtonDown("Fire1") && canWarp && snapshot)
+        {
+            animator.SetBool("Warping", true);
+        }
+        else
+        {
+            animator.SetBool("Warping", false);
+        }
     }
 
 
@@ -134,8 +155,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Deadly")
         {
             isDead = true;
-            animator.SetTrigger("Dead");
-            StartCoroutine(RestartScene());
+            //StartCoroutine(RestartScene());
         }
     }
 
@@ -154,15 +174,19 @@ public class Player : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    private void HandleWarp()
+    IEnumerator HandleWarp()
     {
         if (!canWarp)
         {
-            return;
+            yield return null;
         }
         GameObject snapshot = GameObject.FindGameObjectWithTag("Snapshot");
         if (snapshot)
         {
+            isWarping = true;
+            yield return new WaitForSeconds(1.1f);
+            isWarping = false;
+
             // Create an anomaly
             GameObject anomaly = Instantiate(anomalyPrefab, transform.position, Quaternion.identity);
 
