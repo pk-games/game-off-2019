@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
     public AudioClip walkingSound;
 
     private Animator animator;
-    private Vector3 velocity;
+    private Vector2 velocity;
     private Controller2D controller;
     private SpriteRenderer spriteRenderer;
     private AudioSource audioSource;
