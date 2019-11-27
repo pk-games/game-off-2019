@@ -217,6 +217,8 @@ public class Player : MonoBehaviour
 
         // Restart current scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        isDead = false;
     }
 
     IEnumerator HandleWarp()
