@@ -19,7 +19,6 @@ public class Player : MonoBehaviour
     private float minJumpVelocity;
     private float velocityXSmoothing;
     private bool isDead;
-    private bool isWarping;
 
     public GameObject snapshotPrefab;
     public GameObject anomalyPrefab;
@@ -99,13 +98,6 @@ public class Player : MonoBehaviour
 
         if (!isDead)
         {
-            if (isWarping)
-            {
-                velocity.x = 0;
-                velocity.y = 0;
-                return;
-            }
-
             // Jump at max velocity if we're grounded
             if (Input.GetButtonDown("Jump") && controller.collisions.below)
             {
@@ -222,9 +214,11 @@ public class Player : MonoBehaviour
         GameObject snapshot = GameObject.FindGameObjectWithTag("Snapshot");
         if (snapshot)
         {
-            isWarping = true;
-            yield return new WaitForSeconds(0.55f);
-            isWarping = false;
+            animator.updateMode = AnimatorUpdateMode.UnscaledTime;
+            Time.timeScale = 0;
+            yield return new WaitForSecondsRealtime(0.55f);
+            Time.timeScale = 1;
+            animator.updateMode = AnimatorUpdateMode.Normal;
 
             // Create an anomaly
             GameObject anomaly = Instantiate(anomalyPrefab, transform.position, Quaternion.identity);
