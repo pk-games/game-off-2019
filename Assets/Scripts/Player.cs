@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     public GameObject snapshotPrefab;
     public GameObject anomalyPrefab;
     public AudioClip warpSound;
+    public AudioClip walkingSound;
 
     private Animator animator;
     private Vector3 velocity;
@@ -52,6 +53,37 @@ public class Player : MonoBehaviour
     {
         HandleAnimation();
         HandleMovement();
+        HandleSound();
+    }
+
+    void HandleSound()
+    {
+        if (Input.GetAxisRaw("Horizontal") != 0 && controller.collisions.below)
+        {
+            if (audioSource.clip != walkingSound)
+            {
+                audioSource.Stop();
+                audioSource.clip = walkingSound;
+            }
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
+        }
+        else
+        {
+            if (audioSource.clip == walkingSound)
+            {
+                audioSource.Stop();
+            }
+        }
+
+        GameObject snapshot = GameObject.FindGameObjectWithTag("Snapshot");
+        if (Input.GetButtonDown("Fire1") && canWarp && snapshot)
+        {
+            audioSource.clip = null;
+            audioSource.PlayOneShot(warpSound);
+        }
     }
 
     void HandleMovement()
@@ -87,10 +119,6 @@ public class Player : MonoBehaviour
             GameObject snapshot = GameObject.FindGameObjectWithTag("Snapshot");
             if (Input.GetButtonDown("Fire1") && canWarp && snapshot)
             {
-                // Play the warp sound effect
-                audioSource.PlayOneShot(warpSound);
-
-                // Handle the warp
                 StartCoroutine(HandleWarp());
             }
             if (Input.GetButtonDown("Fire2") && canWarp)

@@ -123,13 +123,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d0d262df672d4a53830ac130a3d4fdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canWarp: 1
-  audioSource: {fileID: 0}
-  warpSound: {fileID: 8300000, guid: a2a8a60858c484d0697d543a2fc2231c, type: 3}
+  canWarp: 0
   snapshotPrefab: {fileID: 1078190012246760200, guid: 76383761935f749e2a356ae349c4e0a5,
     type: 3}
   anomalyPrefab: {fileID: 6260187992419524963, guid: c30b8026a51bc48c2aa6ead93dafdce5,
     type: 3}
+  warpSound: {fileID: 8300000, guid: a2a8a60858c484d0697d543a2fc2231c, type: 3}
+  walkingSound: {fileID: 8300000, guid: 6e2f63df2779d40e8822173a711f43bf, type: 3}
 --- !u!114 &1453326168
 MonoBehaviour:
   m_ObjectHideFlags: 0
