@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     public static float timeToJumpApex = 0.3f;
     public static float accelerationTimeAirborne = 0.2f;
     public static float accelerationTimeGrounded = 0.05f;
-    public static float moveSpeed = 8;
+    public static float moveSpeed = 5;
     public static float gravity;
     public bool canWarp;
 
