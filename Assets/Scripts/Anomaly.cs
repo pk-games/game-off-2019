@@ -6,6 +6,7 @@ public class Anomaly : MonoBehaviour
 {
     Controller2D controller;
     public Vector3 velocity;
+    public Animator animator;
 
     private float velocityXSmoothing;
     private readonly float gravity = Player.gravity;
