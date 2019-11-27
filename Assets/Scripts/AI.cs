@@ -6,23 +6,42 @@ public class AI : MonoBehaviour
 
     private Transform target;
     private Animator animator;
-    private float speed = 2f;
+    private float speed = 2.5f;
     private bool ChasePlayer = false;
+    private SpriteRenderer spr;
+    private Rigidbody2D rb;
+
+
 
     void Start()
     {
         target = GameObject.Find("Player").transform;
         animator = gameObject.GetComponentInParent<Animator>();
+        spr = GetComponentInParent<SpriteRenderer>();
+        rb = GetComponentInParent<Rigidbody2D>();
+
     }
 
     private void Update()
     {
-        if(ChasePlayer)
+        if(Player.isDead)
         {
-            transform.parent.LookAt(target.position);
-            transform.parent.Rotate(new Vector3(0, -90, 0), Space.Self);
-            transform.parent.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
-            
+            animator.SetBool("Running", false);
+
+        }
+        else if (ChasePlayer)
+        {
+            spr.flipX = (target.position.x < transform.position.x);
+            if (spr.flipX)
+            {
+                GetComponentInParent<Anomaly>().velocity.x -= speed;
+            }
+            else
+            {
+                GetComponentInParent<Anomaly>().velocity.x += speed;
+            }
+
+
             animator.SetBool("Running", true);
         } else {
             animator.SetBool("Running", false);

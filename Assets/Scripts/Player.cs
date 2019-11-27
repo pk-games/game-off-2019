@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     private float maxJumpVelocity;
     private float minJumpVelocity;
     private float velocityXSmoothing;
-    private bool isDead;
+    public static bool isDead;
 
     public GameObject snapshotPrefab;
     public GameObject anomalyPrefab;
