@@ -24,6 +24,8 @@ public class Player : MonoBehaviour
     public GameObject anomalyPrefab;
     public AudioClip warpSound;
     public AudioClip walkingSound;
+    public RuntimeAnimatorController playerAnimationController;
+    public RuntimeAnimatorController playerWithArtifactAnimationController;
 
     private Animator animator;
     private Vector2 velocity;
@@ -138,6 +140,14 @@ public class Player : MonoBehaviour
 
     void HandleAnimation()
     {
+        if (canWarp)
+        {
+            animator.runtimeAnimatorController = playerWithArtifactAnimationController;
+        }
+        else
+        {
+            animator.runtimeAnimatorController = playerAnimationController;
+        }
         if (isDead)
         {
             animator.SetBool("Dead", true);
