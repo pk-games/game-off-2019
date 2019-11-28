@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 6345502603358933692}
   - component: {fileID: 6345502603358933688}
   m_Layer: 5
-  m_Name: ChapterNumber
+  m_Name: SceneTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -263,7 +263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dd535989b88b482f8e523cbe13dfcb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeDuration: 2.5
-  backgroundDuration: 4
+  fadeDuration: 1.5
+  backgroundDuration: 1.5
   text: {fileID: 6345502602541593180}
   image: {fileID: 6345502601490869526}
