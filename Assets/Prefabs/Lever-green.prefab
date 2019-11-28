@@ -146,3 +146,5 @@ MonoBehaviour:
   - {fileID: 0}
   isTimed: 1
   timerSeconds: 1
+  leverSound: {fileID: 8300000, guid: 19ad945f50e214064810bffdfef632bb, type: 3}
+  timerSound: {fileID: 8300000, guid: 3b51384529a2b488a89310f0a502c885, type: 3}
