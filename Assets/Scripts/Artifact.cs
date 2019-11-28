@@ -14,6 +14,7 @@ public class Artifact : MonoBehaviour
             Destroy(this.gameObject);
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             player.GetComponent<Player>().canWarp = true;
+            MusicManager.instance.PlayIntenseMusic();
         }
     }
 

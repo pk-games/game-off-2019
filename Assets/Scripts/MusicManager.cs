@@ -2,8 +2,10 @@
 
 public class MusicManager : MonoBehaviour
 {
-    public AudioClip music;
+    public AudioClip calmMusic;
+    public AudioClip intenseMusic;
 
+    private AudioSource audioSource;
     private static MusicManager _instance;
 
     public static MusicManager instance
@@ -35,11 +37,22 @@ public class MusicManager : MonoBehaviour
             }
                 
         }
-        Play();
+
+        audioSource = this.gameObject.GetComponent<AudioSource>();
+        PlayCalmMusic();
     }
 
-    public void Play()
+    public void PlayCalmMusic()
     {
-        this.gameObject.GetComponent<AudioSource>().Play();
+        audioSource.Stop();
+        audioSource.clip = calmMusic;
+        audioSource.Play();
+    }
+
+    public void PlayIntenseMusic()
+    {
+        audioSource.Stop();
+        audioSource.clip = intenseMusic;
+        audioSource.Play();
     }
 }
