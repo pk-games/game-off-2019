@@ -32,9 +32,11 @@ public class Player : MonoBehaviour
     private Controller2D controller;
     private SpriteRenderer spriteRenderer;
     private AudioSource audioSource;
+    public GameObject flash;
 
     void Start()
     {
+        flash.SetActive(false);
         animator = GetComponent<Animator>();
         controller = GetComponent<Controller2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -186,6 +188,7 @@ public class Player : MonoBehaviour
         GameObject snapshot = GameObject.FindGameObjectWithTag("Snapshot");
         if (Input.GetButtonDown("Fire1") && canWarp && snapshot)
         {
+            StartCoroutine(HandleFlash());
             animator.SetBool("Warping", true);
         }
         else
@@ -272,4 +275,12 @@ public class Player : MonoBehaviour
             newSnapshot.GetComponent<SpriteRenderer>().flipX = this.GetComponent<SpriteRenderer>().flipX;
         }
     }
+
+    IEnumerator HandleFlash()
+    {
+        flash.SetActive(true);
+        yield return null;
+        flash.SetActive(false);
+    }
+
 }
