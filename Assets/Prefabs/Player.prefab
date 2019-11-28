@@ -221,7 +221,7 @@ MonoBehaviour:
   anomalyPrefab: {fileID: 6260187992419524963, guid: c30b8026a51bc48c2aa6ead93dafdce5,
     type: 3}
   warpSound: {fileID: 8300000, guid: a2a8a60858c484d0697d543a2fc2231c, type: 3}
-  walkingSound: {fileID: 8300000, guid: 6e2f63df2779d40e8822173a711f43bf, type: 3}
+  walkingSound: {fileID: 8300000, guid: 5ae0af426e10541dfbf1b93617e20d97, type: 3}
   playerAnimationController: {fileID: 9100000, guid: 05e318c0be28943fb82d6a921b4c0118,
     type: 2}
   playerWithArtifactAnimationController: {fileID: 9100000, guid: 1b04aecbc185d423f8ef426efb3a10e3,
