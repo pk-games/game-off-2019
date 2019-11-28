@@ -796,7 +796,7 @@ Transform:
   - {fileID: 1920234986}
   - {fileID: 371870497}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &564456442
 PrefabInstance:
@@ -1473,11 +1473,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9017107301115390060, guid: d3ecf2aa40a974b10b7cb51fa5c2d67b,
-        type: 3}
-      propertyPath: m_ClearFlags
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 9017107301115390062, guid: d3ecf2aa40a974b10b7cb51fa5c2d67b,
         type: 3}
       propertyPath: m_RefResolutionX
@@ -1487,6 +1482,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RefResolutionY
       value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 9017107301115390060, guid: d3ecf2aa40a974b10b7cb51fa5c2d67b,
+        type: 3}
+      propertyPath: m_ClearFlags
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3ecf2aa40a974b10b7cb51fa5c2d67b, type: 3}
@@ -1765,7 +1765,7 @@ PrefabInstance:
     - target: {fileID: 8277303804198369854, guid: 2d5e2b1f0fc2041b3ab3f07eede1f309,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8277303804198369854, guid: 2d5e2b1f0fc2041b3ab3f07eede1f309,
         type: 3}
@@ -1919,7 +1919,7 @@ PrefabInstance:
     - target: {fileID: 6345502603358933695, guid: 717b38529c2b743d6ab46c22b8f1a684,
         type: 3}
       propertyPath: m_Name
-      value: ChapterNumber
+      value: SceneTitle
       objectReference: {fileID: 0}
     - target: {fileID: 6345502603358933691, guid: 717b38529c2b743d6ab46c22b8f1a684,
         type: 3}
@@ -1959,7 +1959,7 @@ PrefabInstance:
     - target: {fileID: 6345502603358933691, guid: 717b38529c2b743d6ab46c22b8f1a684,
         type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6345502603358933691, guid: 717b38529c2b743d6ab46c22b8f1a684,
         type: 3}
@@ -2111,7 +2111,7 @@ Transform:
   m_LocalScale: {x: 8.713319, y: 8.713319, z: 8.713319}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1613831890
 MonoBehaviour:
