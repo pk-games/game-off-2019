@@ -1,11 +1,11 @@
-﻿using System.Collections;
+﻿ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Exit : MonoBehaviour
 {
 	private int currentSceneIndex;
-
+    public static bool levelComplete = false;
 	void Start()
     {
 		currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
@@ -21,8 +21,10 @@ public class Exit : MonoBehaviour
 
 	IEnumerator LoadNextScene()
 	{
+        levelComplete = true;
 		Initiate.Fade("", Color.black, 1);
 		yield return new WaitForSeconds(1);
-		SceneManager.LoadScene(++currentSceneIndex);
-	}
+        SceneManager.LoadScene(++currentSceneIndex);
+        levelComplete = false;
+    }
 }

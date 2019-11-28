@@ -24,7 +24,11 @@ public class AI : MonoBehaviour
 
     private void Update()
     {
-        if(Player.isDead)
+        if(Exit.levelComplete)
+        {
+            animator.SetBool("Running", false);
+        }
+        else if(Player.isDead)
         {
             animator.SetBool("Running", false);
 
