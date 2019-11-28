@@ -47019,26 +47019,6 @@ PrefabInstance:
       propertyPath: m_UpscaleRT
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 9017107301115390060, guid: d3ecf2aa40a974b10b7cb51fa5c2d67b,
-        type: 3}
-      propertyPath: m_BackGroundColor.r
-      value: 0.6517889
-      objectReference: {fileID: 0}
-    - target: {fileID: 9017107301115390060, guid: d3ecf2aa40a974b10b7cb51fa5c2d67b,
-        type: 3}
-      propertyPath: m_BackGroundColor.g
-      value: 0.864223
-      objectReference: {fileID: 0}
-    - target: {fileID: 9017107301115390060, guid: d3ecf2aa40a974b10b7cb51fa5c2d67b,
-        type: 3}
-      propertyPath: m_BackGroundColor.b
-      value: 0.9150943
-      objectReference: {fileID: 0}
-    - target: {fileID: 9017107301115390060, guid: d3ecf2aa40a974b10b7cb51fa5c2d67b,
-        type: 3}
-      propertyPath: m_BackGroundColor.a
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3ecf2aa40a974b10b7cb51fa5c2d67b, type: 3}
 --- !u!1 &1946691355

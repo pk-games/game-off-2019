@@ -701,31 +701,6 @@ PrefabInstance:
       propertyPath: m_UpscaleRT
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9017107301115390060, guid: d3ecf2aa40a974b10b7cb51fa5c2d67b,
-        type: 3}
-      propertyPath: orthographic size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9017107301115390060, guid: d3ecf2aa40a974b10b7cb51fa5c2d67b,
-        type: 3}
-      propertyPath: m_NormalizedViewPortRect.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9017107301115390060, guid: d3ecf2aa40a974b10b7cb51fa5c2d67b,
-        type: 3}
-      propertyPath: m_NormalizedViewPortRect.width
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9017107301115390060, guid: d3ecf2aa40a974b10b7cb51fa5c2d67b,
-        type: 3}
-      propertyPath: m_NormalizedViewPortRect.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9017107301115390060, guid: d3ecf2aa40a974b10b7cb51fa5c2d67b,
-        type: 3}
-      propertyPath: m_NormalizedViewPortRect.height
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3ecf2aa40a974b10b7cb51fa5c2d67b, type: 3}
 --- !u!1001 &1113100208
@@ -38862,22 +38837,22 @@ PrefabInstance:
     - target: {fileID: 8126274873722313121, guid: c010bc285afe14e06905af256b6df56c,
         type: 3}
       propertyPath: m_Origin.x
-      value: -19
+      value: -23
       objectReference: {fileID: 0}
     - target: {fileID: 8126274873722313121, guid: c010bc285afe14e06905af256b6df56c,
         type: 3}
       propertyPath: m_Origin.y
-      value: -13
+      value: -17
       objectReference: {fileID: 0}
     - target: {fileID: 8126274873722313121, guid: c010bc285afe14e06905af256b6df56c,
         type: 3}
       propertyPath: m_Size.x
-      value: 39
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8126274873722313121, guid: c010bc285afe14e06905af256b6df56c,
         type: 3}
       propertyPath: m_Size.y
-      value: 24
+      value: 33
       objectReference: {fileID: 0}
     - target: {fileID: 8126274873722313121, guid: c010bc285afe14e06905af256b6df56c,
         type: 3}
