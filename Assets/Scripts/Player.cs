@@ -24,6 +24,11 @@ public class Player : MonoBehaviour
     public GameObject anomalyPrefab;
     public AudioClip warpSound;
     public AudioClip walkingSound;
+    public AudioClip jumpingSound;
+    public AudioClip landingSound;
+    public AudioClip dyingSound;
+    public AudioClip snapshotSound;
+
     public RuntimeAnimatorController playerAnimationController;
     public RuntimeAnimatorController playerWithArtifactAnimationController;
 
@@ -55,37 +60,46 @@ public class Player : MonoBehaviour
     void Update()
     {
         HandleAnimation();
-        HandleMovement();
         HandleSound();
+        HandleMovement();
     }
 
     void HandleSound()
     {
-        if (Input.GetAxisRaw("Horizontal") != 0 && controller.collisions.below)
+        //if (Input.GetAxisRaw("Horizontal") != 0 && controller.collisions.below)
+        //{
+        //    if (!audioSource.isPlaying)
+        //    {
+        //        audioSource.clip = walkingSound;
+        //        audioSource.Play();
+        //    }
+        //}
+        //else
+        //{
+        //    audioSource.Stop();
+        //}
+
+        // Uncommenting this ^^^ stops the one shots below from playing
+        // they seem to clash and I have no idea why.
+        //
+        // Specifically it seems to be the audioSource.Stop(); which is causing the issue.
+        //
+        // Good luck! :(
+
+        if (Input.GetButtonDown("Jump") && controller.collisions.below)
         {
-            if (audioSource.clip != walkingSound)
-            {
-                audioSource.Stop();
-                audioSource.clip = walkingSound;
-            }
-            if (!audioSource.isPlaying)
-            {
-                audioSource.Play();
-            }
-        }
-        else
-        {
-            if (audioSource.clip == walkingSound)
-            {
-                audioSource.Stop();
-            }
+            audioSource.PlayOneShot(jumpingSound, 0.5f);
         }
 
         GameObject snapshot = GameObject.FindGameObjectWithTag("Snapshot");
         if (Input.GetButtonDown("Fire1") && canWarp && snapshot)
         {
-            audioSource.clip = null;
-            audioSource.PlayOneShot(warpSound);
+            audioSource.PlayOneShot(warpSound, 0.5f);
+        }
+
+        if (Input.GetButtonDown("Fire2") && canWarp)
+        {
+            audioSource.PlayOneShot(warpSound, 0.5f);
         }
     }
 
@@ -203,6 +217,10 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Deadly" || collision.gameObject.tag == "Anomaly")
         {
             isDead = true;
+
+            // Can't live in HandleSound because it's played every frame
+            audioSource.PlayOneShot(dyingSound);
+
             StartCoroutine(RestartScene(1));
         }
     }

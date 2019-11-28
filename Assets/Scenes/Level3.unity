@@ -1113,11 +1113,6 @@ PrefabInstance:
       propertyPath: triggers.Array.data[0]
       value: 
       objectReference: {fileID: 500301984}
-    - target: {fileID: 4324510625440526747, guid: f744c5d0aa63248aeae391d13cb1a0a9,
-        type: 3}
-      propertyPath: isTimed
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f744c5d0aa63248aeae391d13cb1a0a9, type: 3}
 --- !u!1001 &3470910604491595679
