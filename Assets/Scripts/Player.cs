@@ -54,6 +54,10 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if(Exit.levelComplete)
+        {
+            animator.SetBool("Running", false);
+        }
         HandleAnimation();
         HandleMovement();
         HandleSound();
