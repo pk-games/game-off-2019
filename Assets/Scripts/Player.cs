@@ -278,6 +278,7 @@ public class Player : MonoBehaviour
 
     IEnumerator HandleFlash()
     {
+        yield return new WaitForSecondsRealtime(0.55f);
         flash.SetActive(true);
         yield return null;
         flash.SetActive(false);
