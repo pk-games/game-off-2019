@@ -6,7 +6,10 @@ public class Lever : MonoBehaviour
     public GameObject[] triggers;
     public bool isTimed;
     public float timerSeconds;
+    public AudioClip leverSound;
+    public AudioClip timerSound;
 
+    private AudioSource audioSource;
     private SpriteRenderer spriteRenderer;
     private bool isInRange;
     private bool isUsable = true;
@@ -15,6 +18,12 @@ public class Lever : MonoBehaviour
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
+
+        if (isTimed)
+        {
+            audioSource.clip = timerSound;
+        }
     }
 
     private void Update()
@@ -25,6 +34,7 @@ public class Lever : MonoBehaviour
 
             if (isTimed)
             {
+                audioSource.Play();
                 isUsable = false;
                 StartCoroutine(OnTimerEnd());
             }
@@ -35,6 +45,7 @@ public class Lever : MonoBehaviour
     {
         isActive = !isActive;
         spriteRenderer.flipX = isActive;
+        audioSource.PlayOneShot(leverSound);
 
         for (int i = 0; i < triggers.Length; i++)
         {
@@ -46,6 +57,7 @@ public class Lever : MonoBehaviour
     {
         yield return new WaitForSeconds(timerSeconds);
         isUsable = true;
+        audioSource.Stop();
         ToggleTriggers();
     }
 

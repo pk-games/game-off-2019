@@ -41972,7 +41972,12 @@ PrefabInstance:
     - target: {fileID: 4324510625440526747, guid: f744c5d0aa63248aeae391d13cb1a0a9,
         type: 3}
       propertyPath: timerSeconds
-      value: 1.5
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324510625440526747, guid: f744c5d0aa63248aeae391d13cb1a0a9,
+        type: 3}
+      propertyPath: isTimed
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f744c5d0aa63248aeae391d13cb1a0a9, type: 3}
