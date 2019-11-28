@@ -8,12 +8,10 @@ public class FadeInOutText : MonoBehaviour
 
     public Text text;
     public Image image;
-    private Animator animator;
 
     void Start()
     {
-        Invoke("Fade", 0);
-        animator = GetComponentInChildren<Animator>();
+        Invoke("Fade", 0.5f);
     }
 
     public void Fade()
