@@ -1303,7 +1303,7 @@ PrefabInstance:
     - target: {fileID: 6345502602541593180, guid: 717b38529c2b743d6ab46c22b8f1a684,
         type: 3}
       propertyPath: m_Text
-      value: 
+      value: YOUR FUTURE CATCHES UP WITH YOU
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 717b38529c2b743d6ab46c22b8f1a684, type: 3}
