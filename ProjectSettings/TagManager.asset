@@ -8,6 +8,7 @@ TagManager:
   - Button
   - Deadly
   - Snapshot
+  - Anomaly
   layers:
   - Default
   - TransparentFX

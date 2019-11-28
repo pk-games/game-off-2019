@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: -1711098259501323571}
   m_Layer: 0
   m_Name: Anomaly
-  m_TagString: Deadly
+  m_TagString: Anomaly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -209,7 +209,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4345c92970ec14623be3265d7caef92c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: {x: 0, y: 0, z: 0}
+  velocity: {x: 0, y: 0}
+  animator: {fileID: 0}
 --- !u!50 &-3580853887961583906
 Rigidbody2D:
   serializedVersion: 4

@@ -197,7 +197,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Deadly")
+        if (collision.gameObject.tag == "Deadly" || collision.gameObject.tag == "Anomaly")
         {
             isDead = true;
             StartCoroutine(RestartScene(1));
