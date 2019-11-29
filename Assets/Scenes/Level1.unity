@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 128142678}
   - component: {fileID: 128142677}
   m_Layer: 0
-  m_Name: Prompts (1)
+  m_Name: LevelPrompt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
