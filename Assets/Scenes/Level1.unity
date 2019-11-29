@@ -611,7 +611,7 @@ PrefabInstance:
     - target: {fileID: 8044864564075577848, guid: acabb0c06c3fb4cf0ba4648c3a42b2e4,
         type: 3}
       propertyPath: m_Name
-      value: JumpPrompt (1)
+      value: MovementPrompt
       objectReference: {fileID: 0}
     - target: {fileID: 8044864564075577849, guid: acabb0c06c3fb4cf0ba4648c3a42b2e4,
         type: 3}
