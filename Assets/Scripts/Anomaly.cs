@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 [RequireComponent(typeof(Controller2D))]
 
@@ -17,6 +18,7 @@ public class Anomaly : MonoBehaviour
     void Awake()
     {
         controller = GetComponent<Controller2D>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -36,11 +38,18 @@ public class Anomaly : MonoBehaviour
     {
         if (collision.gameObject.tag == "Deadly")
         {
-            Destroy(this.gameObject);
+            StartCoroutine(Death());
         }
         if (collision.gameObject.tag == "Snapshot")
         {
             Destroy(collision.gameObject);
         }
+    }
+
+    IEnumerator Death()
+    {
+        animator.SetTrigger("Death");
+        yield return new WaitForSeconds(1);
+        Destroy(this.gameObject);
     }
 }
