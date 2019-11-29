@@ -163,10 +163,6 @@ public class Player : MonoBehaviour
         {
             animator.runtimeAnimatorController = playerAnimationController;
         }
-        if (isDead)
-        {
-            animator.SetBool("Dead", true);
-        }
         float directionX = Input.GetAxisRaw("Horizontal");
         if (directionX > 0)
         {
@@ -216,6 +212,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Deadly" || collision.gameObject.tag == "Anomaly")
         {
             isDead = true;
+            animator.SetTrigger("Dead");
 
             // Can't live in HandleSound because it's played every frame
             audioSource.PlayOneShot(dyingSound);
