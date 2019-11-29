@@ -10,19 +10,23 @@ public class StartGame : MonoBehaviour
     {
         StartCoroutine(LoadFirstScene());
     }
+    public void OnExit()
+    {
+        Application.Quit();
+    }
 
     IEnumerator LoadFirstScene()
-    {
-        // Fade to black
-        Initiate.Fade("", Color.black, 1);
+        {
+            // Fade to black
+            Initiate.Fade("", Color.black, 1);
 
-        // Play click sound
-        GetComponent<AudioSource>().PlayOneShot(OnClickSound);
+            // Play click sound
+            GetComponent<AudioSource>().PlayOneShot(OnClickSound);
 
-        // Wait a second
-        yield return new WaitForSeconds(1);
+            // Wait a second
+            yield return new WaitForSeconds(1);
 
-        // Load the first scene
-        SceneManager.LoadScene(1);
-    }
+            // Load the first scene
+            SceneManager.LoadScene(1);
+        }
 }
