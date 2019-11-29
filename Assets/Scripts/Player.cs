@@ -236,6 +236,7 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         // Restart current scene
+        Caching.ClearCache();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
         isDead = false;
