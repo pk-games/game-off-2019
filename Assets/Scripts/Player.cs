@@ -55,6 +55,18 @@ public class Player : MonoBehaviour
 
         // Calculate minjump velocity from gravity & min jump height
         minJumpVelocity = Mathf.Sqrt(2 * Mathf.Abs(gravity) * minJumpHeight);
+        Scene scene = SceneManager.GetActiveScene();
+        if (scene.name == "Level1" || scene.name == "Level2")
+        {
+            canWarp = false;
+            animator.runtimeAnimatorController = playerAnimationController;
+        }
+        else
+        {
+            canWarp = true;
+            animator.runtimeAnimatorController = playerWithArtifactAnimationController;
+        }
+
     }
 
     void Update()
