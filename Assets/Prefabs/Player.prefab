@@ -222,7 +222,9 @@ MonoBehaviour:
   anomalyPrefab: {fileID: 6260187992419524963, guid: c30b8026a51bc48c2aa6ead93dafdce5,
     type: 3}
   warpSound: {fileID: 8300000, guid: a2a8a60858c484d0697d543a2fc2231c, type: 3}
-  walkingSound: {fileID: 8300000, guid: 5ae0af426e10541dfbf1b93617e20d97, type: 3}
+  footStep1: {fileID: 8300000, guid: 268aaf0180bb64485ab1c150cdbdc28b, type: 3}
+  footStep2: {fileID: 8300000, guid: 3cb100fa3c3184c64b59b3008a6d55a4, type: 3}
+  footStep3: {fileID: 8300000, guid: f5e04ae8f35264addab72c93e3e0f1c1, type: 3}
   jumpingSound: {fileID: 8300000, guid: ecf1cb805796a4ca48a9020818dec324, type: 3}
   landingSound: {fileID: 8300000, guid: 04f8998fe42bc4f0e9f1886835ea4d4b, type: 3}
   dyingSound: {fileID: 8300000, guid: 6794c9448dc4f427c99f7389a4095413, type: 3}
@@ -257,7 +259,7 @@ Animator:
   m_GameObject: {fileID: 7894669927224628848}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 05e318c0be28943fb82d6a921b4c0118, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1b04aecbc185d423f8ef426efb3a10e3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

@@ -23,7 +23,9 @@ public class Player : MonoBehaviour
     public GameObject snapshotPrefab;
     public GameObject anomalyPrefab;
     public AudioClip warpSound;
-    public AudioClip walkingSound;
+    public AudioClip footStep1;
+    public AudioClip footStep2;
+    public AudioClip footStep3;
     public AudioClip jumpingSound;
     public AudioClip landingSound;
     public AudioClip dyingSound;
@@ -82,25 +84,6 @@ public class Player : MonoBehaviour
 
     void HandleSound()
     {
-        //if (Input.GetAxisRaw("Horizontal") != 0 && controller.collisions.below)
-        //{
-        //    if (!audioSource.isPlaying)
-        //    {
-        //        audioSource.clip = walkingSound;
-        //        audioSource.Play();
-        //    }
-        //}
-        //else
-        //{
-        //    audioSource.Stop();
-        //}
-
-        // Uncommenting this ^^^ stops the one shots below from playing
-        // they seem to clash and I have no idea why.
-        //
-        // Specifically it seems to be the audioSource.Stop(); which is causing the issue.
-        //
-        // Good luck! :(
 
         if (Input.GetButtonDown("Jump") && controller.collisions.below)
         {
@@ -316,6 +299,26 @@ public class Player : MonoBehaviour
         flash.SetActive(true);
         yield return null;
         flash.SetActive(false);
+    }
+
+    /**
+     * This is not being called in code. This is called in the animator
+     * event trigger. To see, load up the "animation" window, select
+     * "Player" and then select "Running". You will see little stems
+     * which call these functions. They needed to be divided up
+     * else it will play the entire duration of the footsteps.
+     */
+    void FootStep1 ()
+    {
+        audioSource.PlayOneShot(footStep1);
+    }
+    void FootStep2()
+    {
+        audioSource.PlayOneShot(footStep2);
+    }
+    void FootStep3()
+    {
+        audioSource.PlayOneShot(footStep3);
     }
 
 }
