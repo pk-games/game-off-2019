@@ -26,7 +26,7 @@ public class AI : MonoBehaviour
     {
         if(Exit.levelComplete)
         {
-            animator.SetBool("Running", false);
+            animator.SetTrigger("Death");
         }
         else if(Player.isDead)
         {
