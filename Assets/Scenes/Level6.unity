@@ -582,6 +582,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &666095145 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 186871146034962341, guid: eba441a1bcec043d391093ec7c5dcb8b,
+    type: 3}
+  m_PrefabInstance: {fileID: 367771142}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &756343365
 GameObject:
   m_ObjectHideFlags: 0
@@ -909,6 +915,11 @@ PrefabInstance:
       propertyPath: triggers.Array.data[0]
       value: 
       objectReference: {fileID: 992736262}
+    - target: {fileID: 4324510625440526747, guid: 94f4c94dab833493d9da2a33ce2545dc,
+        type: 3}
+      propertyPath: triggers.Array.data[1]
+      value: 
+      objectReference: {fileID: 666095145}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94f4c94dab833493d9da2a33ce2545dc, type: 3}
 --- !u!1001 &1086914058
@@ -48086,5 +48097,15 @@ PrefabInstance:
       propertyPath: triggers.Array.data[0]
       value: 
       objectReference: {fileID: 1004982323}
+    - target: {fileID: 4324510625440526747, guid: 83ad623c8d2b24eaca7a55d76c914ec4,
+        type: 3}
+      propertyPath: timerSeconds
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324510625440526747, guid: 83ad623c8d2b24eaca7a55d76c914ec4,
+        type: 3}
+      propertyPath: isTimed
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83ad623c8d2b24eaca7a55d76c914ec4, type: 3}
