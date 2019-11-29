@@ -98,7 +98,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetButtonDown("Fire2") && canWarp)
         {
-            audioSource.PlayOneShot(warpSound, 0.5f);
+            audioSource.PlayOneShot(snapshotSound, 0.5f);
         }
     }
 
