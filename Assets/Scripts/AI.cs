@@ -22,9 +22,9 @@ public class AI : MonoBehaviour
         spr = GetComponentInParent<SpriteRenderer>();
         rb = GetComponentInParent<Rigidbody2D>();
         Scene scene = SceneManager.GetActiveScene();
-        if (scene.name == "Level6")
+        if (scene.name == "Level6" || scene.name == "Level10")
         {
-            speed = 2.32f;
+            speed = 2.3f;
         }
         else
         {
