@@ -267,7 +267,8 @@ PrefabInstance:
       propertyPath: m_Text
       value: "Press P: Create a Snapshot of your position\n\nPress O: Warp back to
         your snapshot position.\n\nBE WARNED! \n\nOnce you have warped back, \nan
-        anomoly will come to find you!"
+        anomoly will come to find you!\n\nIf things don't go your way, press \"R\"\nto
+        restart the level"
       objectReference: {fileID: 0}
     - target: {fileID: 8044864565233272696, guid: acabb0c06c3fb4cf0ba4648c3a42b2e4,
         type: 3}
