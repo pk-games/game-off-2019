@@ -47,6 +47,7 @@ public class MusicManager : MonoBehaviour
         audioSource.Stop();
         audioSource.clip = calmMusic;
         audioSource.Play();
+        audioSource.loop = true;
     }
 
     public void PlayIntenseMusic()
@@ -54,5 +55,6 @@ public class MusicManager : MonoBehaviour
         audioSource.Stop();
         audioSource.clip = intenseMusic;
         audioSource.Play();
+        audioSource.loop = true;
     }
 }
